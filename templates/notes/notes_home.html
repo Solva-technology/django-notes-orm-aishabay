@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}<title>Home Page</title>{% endblock  %}
+
+{% block content %}
+    <div class="container my-5 mx-5">
+        <h4>'Добро пожаловать в Заметки!'</h4>
+        <h5>
+            Это - простой Django-проект с базовой маршрутизацией для работы с заметками.
+            Состоит из одного приложения notes, реализующего просмотр списка всех заметок,
+            фильтрацию по категориям и просмотр конкретной заметки по её ID.
+        </h5>
+        <img src="{% static 'notes/images/hello.gif' %}">
+    </div>
+{% endblock %}
