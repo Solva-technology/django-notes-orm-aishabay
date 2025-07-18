@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}<title>All Notes</title>{% endblock  %}
+
+{% block content %}
+    <div class="container my-5 mx-5" style="padding-bottom: 50px;">
+        <h3 class="my-3">List of notes:</h3>
+        <hr>
+        {% for note in notes %}
+            <h4>
+                <a href="{% url 'notes:note_detail' note.id %}">{{ note.text|truncatechars:100 }}</a><br><br>
+                Author: {{ note.author }}<br><br>
+                Status: {{ note.status }}<br><br>
+                Categories:
+                <ul>
+                {% for category in note.categories.all %}
+                    <li>{{ category }}</li>
+                {% endfor %}
+                </ul>
+                Created: {{ note.created_at|date:"d/m/Y" }} at {{ note.created_at|time:"H:i" }}
+            </h4>
+            {% if not forloop.last %}
+                <hr>
+            {% endif %}
+            {% empty %}
+            <h5>No notes found</h5>
+        {% endfor %}
+    </div>
+{% endblock %}

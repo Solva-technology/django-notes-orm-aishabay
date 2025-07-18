@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}<title>Profile Page</title>{% endblock  %}
+
+{% block content %}
+    <div class="container my-5 mx-5">
+        <h3 class="my-3">Profile Page</h3>
+        <hr>
+        {% if user_profile %}
+        <h4>
+            Name: {{ user_profile.user.name }}<br><br>
+            Email: {{ user_profile.user.email }}<br><br>
+            Bio: {{ user_profile.bio }}<br><br>
+            Birthday: {{ user_profile.birth_date|date:"d/m/Y" }}<br>
+        </h4>
+        {% else %}
+            <h4>User not found</h4>
+        {% endif %}
+        <br><br><br>
+        <h3 class="my-3">{{ user_profile.user.name }}'s notes:</h3>
+        <hr>
+        {% for note in notes %}
+            <h4>
+                {{ note.text }}<br>
+                Status: {{ note.status }}<br>
+            </h4>
+            {% if not forloop.last %}
+                <hr>
+            {% endif %}
+            {% empty %}
+            <h5>No notes found</h5>
+        {% endfor %}
+    </div>
+{% endblock %}

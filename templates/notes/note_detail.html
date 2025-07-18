@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}<title>Note details</title>{% endblock  %}
+
+{% block content %}
+    <div class="container my-5 mx-5">
+        <h3 class="my-3">Note details</h3>
+        <hr>
+        {% if note %}
+        <h4>
+            {{ note.text }}<br>
+            <br>
+            Author: {{ note.author }} | {{ note.author.email }}<br>
+            Birthday: {{ note.author.userprofile.birth_date|date:"d/m/Y" }}<br>
+            Bio: {{ note.author.userprofile.bio }}<br>
+            <br>
+            Status: {{ note.status.name }} | {% if note.status.is_final %}final{% else %}not final{% endif %}<br><br>
+            Categories:
+            <ul>
+            {% for category in note.categories.all %}
+                <li>{{ category.title }}: {{ category.description }}</li>
+            {% endfor %}
+            </ul>
+            Created: {{ note.created_at|date:"d/m/Y" }} at {{ note.created_at|time:"H:i" }}
+        </h4>
+        {% else %}
+            <h4>Note not found</h4>
+        {% endif %}
+    </div>
+{% endblock %}

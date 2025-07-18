@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}<title>Users</title>{% endblock  %}
+
+{% block content %}
+    <div class="container my-5 mx-5">
+        <h3 class="my-3">All Users</h3>
+        <hr>
+        {% for user in users %}
+            <h4>
+                Name: <a href="{% url 'notes:profile' user.id %}">{{ user.name }}</a><br><br>
+                Email: {{ user.email }}<br><br>
+            </h4>
+            {% if not forloop.last %}
+                <hr>
+            {% endif %}
+            {% empty %}
+            <h5>No users found</h5>
+        {% endfor %}
+    </div>
+{% endblock %}
