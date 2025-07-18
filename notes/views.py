@@ -41,7 +41,9 @@ def profile_page(request, user_id):
     user_profile = get_object_or_404(
         UserProfile.objects.select_related("user"), id=user_id
     )
-    notes = Note.objects.filter(author__id=user_id).select_related("status").all()
+    notes = Note.objects.filter(
+        author__id=user_id
+    ).select_related("status").all()
     context = {"user_profile": user_profile, "notes": notes}
     return render(request, "notes/profile_page.html", context)
 

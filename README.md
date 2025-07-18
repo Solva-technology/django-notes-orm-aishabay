@@ -36,6 +36,10 @@ DB_PORT=5432
 
 TIMEZONE=Asia/Almaty
 LANGUAGE=ru-ru
+
+SECRET_KEY="django-insecure-ft@vcajj(6w61wy_3ncfw)i$_4$cn7gut@qqeqj-$9-mz#da6c"
+DEBUG=True
+ALLOWED_HOSTS=127.0.0.1,localhost
 ```
 
 5. Создайте и запустите контейнеры
